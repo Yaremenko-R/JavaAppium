@@ -1,6 +1,6 @@
 package ui.ios;
 
-import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.ArticlePageObject;
 
 public class IOSArticlePageObject extends ArticlePageObject {
@@ -12,7 +12,7 @@ public class IOSArticlePageObject extends ArticlePageObject {
     CLOSE_ARTICLE_BUTTON = "id:Back";
   }
 
-  public IOSArticlePageObject(AppiumDriver driver) {
+  public IOSArticlePageObject(RemoteWebDriver driver) {
     super(driver);
   }
 }

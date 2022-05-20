@@ -1,6 +1,6 @@
 package ui.ios;
 
-import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.SearchPageObject;
 
 public class IOSSearchPageObject extends SearchPageObject {
@@ -15,7 +15,7 @@ public class IOSSearchPageObject extends SearchPageObject {
     SEARCH_RESULT_BY_SUBSTRING_TITLE_DESC_TPL = "xpath://*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@resource-id='org.wikipedia:id/page_list_item_title/@text='{TITLE}' and @resource-id='org.wikipedia:id/page_list_item_description/@text='{DESC}']";
   }
 
-  public IOSSearchPageObject(AppiumDriver driver) {
+  public IOSSearchPageObject(RemoteWebDriver driver) {
     super(driver);
   }
 }

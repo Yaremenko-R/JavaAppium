@@ -1,6 +1,6 @@
 package ui;
 
-import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 abstract public class SearchPageObject extends MainPageObject {
    protected static String
@@ -13,7 +13,7 @@ abstract public class SearchPageObject extends MainPageObject {
           SEARCH_ARTICLE_TITLE,
           SEARCH_RESULT_BY_SUBSTRING_TITLE_DESC_TPL;
 
-  public SearchPageObject(AppiumDriver driver) {
+  public SearchPageObject(RemoteWebDriver driver) {
     super(driver);
   }
 
