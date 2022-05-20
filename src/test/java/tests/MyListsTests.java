@@ -3,17 +3,17 @@ package tests;
 import lib.CoreTestCase;
 import lib.Platform;
 import org.junit.Test;
-import ui.ArticlePageObject;
-import ui.MyListsPageObject;
-import ui.NavigationUI;
-import ui.SearchPageObject;
+import ui.*;
 import ui.factories.ArticlePageObjectFactory;
 import ui.factories.MyListsPageObjectFactory;
 import ui.factories.NavigationUIFactory;
 import ui.factories.SearchPageObjectFactory;
 
 public class MyListsTests extends CoreTestCase {
-  private static final String name_of_folder = "Learning programming";
+  private static final String
+          name_of_folder = "Learning programming",
+          login = "MilaAfina",
+          pass = "Adeloida0";
 
   @Test
   public void testSaveFirstArticleToMyList() {
@@ -21,7 +21,7 @@ public class MyListsTests extends CoreTestCase {
 
     SearchPageObject.initSearchInput();
     SearchPageObject.typeSearchLine("Java");
-    SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+    SearchPageObject.clickByArticleWithSubstring("bject-oriented programming language");
 
     ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
     ArticlePageObject.waitForTitleElement();
@@ -29,17 +29,28 @@ public class MyListsTests extends CoreTestCase {
 
     if (Platform.getInstance().isAndroid()) {
       ArticlePageObject.addArticleToMyList(name_of_folder);
-    } else  {
+    } else {
+      ArticlePageObject.addArticleToMySaved();
+    }
+    if (Platform.getInstance().isMW()) {
+      AuthPageObject Auth = new AuthPageObject(driver);
+      Auth.clickAuthButton();
+      Auth.enterLoginData(login, pass);
+      Auth.submitForm();
+
+      ArticlePageObject.waitForTitleElement();
+      assertEquals("We are not on the same page after login", article_title, ArticlePageObject.getArticleTitle());
       ArticlePageObject.addArticleToMySaved();
     }
 
     ArticlePageObject.closeArticle();
 
     NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+    NavigationUI.openNavigation();
     NavigationUI.clickMyLists();
 
     MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
-    if(Platform.getInstance().isAndroid()) {
+    if (Platform.getInstance().isAndroid()) {
       MyListsPageObject.openFolderByName(name_of_folder);
     }
     MyListsPageObject.swipeByArticleToDelete(article_title);
@@ -52,7 +63,7 @@ public class MyListsTests extends CoreTestCase {
     SearchPageObject.initSearchInput();
     String search_line = "Java";
     SearchPageObject.typeSearchLine(search_line);
-    SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+    SearchPageObject.clickByArticleWithSubstring("bject-oriented programming language");
 
     ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 
@@ -61,7 +72,7 @@ public class MyListsTests extends CoreTestCase {
 
     if (Platform.getInstance().isAndroid()) {
       ArticlePageObject.addArticleToMyList(name_of_folder);
-    } else  {
+    } else {
       ArticlePageObject.addArticleToMySaved();
     }
 
@@ -75,7 +86,7 @@ public class MyListsTests extends CoreTestCase {
 
     if (Platform.getInstance().isAndroid()) {
       ArticlePageObject.addArticleToMyList(name_of_folder);
-    } else  {
+    } else {
       ArticlePageObject.addArticleToMySaved();
     }
 
@@ -86,7 +97,7 @@ public class MyListsTests extends CoreTestCase {
 
     MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
 
-    if(Platform.getInstance().isAndroid()) {
+    if (Platform.getInstance().isAndroid()) {
       MyListsPageObject.openFolderByName(name_of_folder);
     }
     MyListsPageObject.swipeByArticleToDelete(article_title1);
