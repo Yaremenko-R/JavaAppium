@@ -29,14 +29,16 @@ public class MyListsTests extends CoreTestCase {
 
     if (Platform.getInstance().isAndroid()) {
       ArticlePageObject.addArticleToMyList(name_of_folder);
-    } else {
+    } else if (Platform.getInstance().isIOS()) {
       ArticlePageObject.addArticleToMySaved();
-    }
-    if (Platform.getInstance().isMW()) {
+    } else {
+      NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+      NavigationUI.openNavigation();
       AuthPageObject Auth = new AuthPageObject(driver);
       Auth.clickAuthButton();
       Auth.enterLoginData(login, pass);
       Auth.submitForm();
+      NavigationUI.switchToMobileView();
 
       ArticlePageObject.waitForTitleElement();
       assertEquals("We are not on the same page after login", article_title, ArticlePageObject.getArticleTitle());

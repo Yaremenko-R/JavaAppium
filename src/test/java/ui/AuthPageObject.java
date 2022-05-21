@@ -4,7 +4,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class AuthPageObject extends MainPageObject {
   private static final String
-          LOGIN_BUTTON = "xpath://body/div/a[text()='Log in']",
+          LOGIN_BUTTON = "xpath://*[@id='p-personal']/li/a/span[2]",
           LOGIN_INPUT = "css:input[name='wpName']",
           PASSWORD_INPUT = "css:input[name='wpPassword']",
           SUBMIT_BUTTON = "css:button#wpLoginAttempt";
@@ -20,7 +20,7 @@ public class AuthPageObject extends MainPageObject {
 
   public void enterLoginData(String login, String password) {
     this.waitForElementAndSendKeys(LOGIN_INPUT, login, "Cannot find and put a login to the login input ", 5);
-    this.waitForElementAndSendKeys(PASSWORD_INPUT, login, "Cannot find and put a password to the password input ", 5);
+    this.waitForElementAndSendKeys(PASSWORD_INPUT, password, "Cannot find and put a password to the password input ", 5);
   }
 
   public void submitForm() {

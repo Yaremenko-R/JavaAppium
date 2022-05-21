@@ -35,9 +35,9 @@ abstract public class MyListsPageObject extends MainPageObject {
 
   public void swipeByArticleToDelete(String article_title) {
     this.waitForArticleToAppearByTitle(article_title);
-    String article_xpath = getFolderXpathByName(article_title);
 
     if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()) {
+      String article_xpath = getFolderXpathByName(article_title);
       this.swipeElementToLeft(
               article_xpath,
               "Cannot find saved article");
@@ -47,6 +47,7 @@ abstract public class MyListsPageObject extends MainPageObject {
     }
 
     if (Platform.getInstance().isIOS()) {
+      String article_xpath = getFolderXpathByName(article_title);
       this.clickElementToTheRightUpperCorner(article_xpath, "Cannot find saved article");
     }
 
@@ -58,18 +59,26 @@ abstract public class MyListsPageObject extends MainPageObject {
   }
 
   public void waitForArticleToDisappearByTitle(String article_title) {
-    String article_xpath = getFolderXpathByName(article_title);
-    this.waitForElementNotPresent(
-            article_xpath,
-            "Saved article still present with title " + article_title,
-            15);
+    if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()) {
+      String article_xpath = getFolderXpathByName(article_title);
+      this.waitForElementNotPresent(
+              article_xpath,
+              "Saved article still present with title " + article_title,
+              15);
+    } else {
+      System.out.println("Method waitForArticleToDisappearByTitle() does nothing for platform " + Platform.getInstance().getPlatformVar());
+    }
   }
 
   public void waitForArticleToAppearByTitle(String article_title) {
-    String article_xpath = getFolderXpathByName(article_title);
-    this.waitForElementPresent(
-            article_xpath,
-            "Cannot find saved article by title " + article_title,
-            15);
+    if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()) {
+      String article_xpath = getFolderXpathByName(article_title);
+      this.waitForElementPresent(
+              article_xpath,
+              "Cannot find saved article by title " + article_title,
+              15);
+    } else {
+      System.out.println("Method waitForArticleToAppearByTitle() does nothing for platform " + Platform.getInstance().getPlatformVar());
+    }
   }
 }
