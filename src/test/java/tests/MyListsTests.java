@@ -74,14 +74,27 @@ public class MyListsTests extends CoreTestCase {
 
     if (Platform.getInstance().isAndroid()) {
       ArticlePageObject.addArticleToMyList(name_of_folder);
+    } else if (Platform.getInstance().isIOS()) {
+      ArticlePageObject.addArticleToMySaved();
     } else {
+      NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+      NavigationUI.openNavigation();
+      AuthPageObject Auth = new AuthPageObject(driver);
+      Auth.clickAuthButton();
+      Auth.enterLoginData(login, pass);
+      Auth.submitForm();
+      NavigationUI.switchToMobileView();
+
+      ArticlePageObject.waitForTitleElement();
+      assertEquals("We are not on the same page after login", article_title1, ArticlePageObject.getArticleTitle());
       ArticlePageObject.addArticleToMySaved();
     }
 
     ArticlePageObject.closeArticle();
 
+    SearchPageObject.initSearchInput();
     SearchPageObject.typeSearchLine(search_line);
-    SearchPageObject.clickByArticleWithSubstring("JavaScript");
+    SearchPageObject.clickByArticleWithSubstring("igh-level programming language");
 
     ArticlePageObject.waitForTitleElement();
     String article_title2 = ArticlePageObject.getArticleTitle();
@@ -95,6 +108,7 @@ public class MyListsTests extends CoreTestCase {
     ArticlePageObject.closeArticle();
 
     NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+    NavigationUI.openNavigation();
     NavigationUI.clickMyLists();
 
     MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
@@ -104,7 +118,7 @@ public class MyListsTests extends CoreTestCase {
     }
     MyListsPageObject.swipeByArticleToDelete(article_title1);
     MyListsPageObject.waitForArticleToAppearByTitle(article_title2);
-    SearchPageObject.clickByArticleWithSubstring("JavaScript");
+    SearchPageObject.clickByArticleWithSubstring("igh-level programming language");
     String article_title2_after = ArticlePageObject.getArticleTitle();
 
     assertEquals(
