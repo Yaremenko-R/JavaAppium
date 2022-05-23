@@ -58,7 +58,7 @@ public class SearchTests extends CoreTestCase {
 
     SearchPageObject.initSearchInput();
     SearchPageObject.typeSearchLine("Java");
-    SearchPageObject.waitForElementByTitleAndDescription("Java (programming language)", "bject-oriented programming language");
+    SearchPageObject.waitForElementByTitleAndDescription("ava (programming language)", "bject-oriented programming language");
     int amount_of_search_results = SearchPageObject.getAmountOfFoundArticles();
 
     assertTrue(
