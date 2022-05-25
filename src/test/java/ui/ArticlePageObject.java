@@ -35,11 +35,15 @@ abstract public class ArticlePageObject extends MainPageObject {
     }
   }
 
-  public void getArticleTitleNoWait() {
-    this.noWaitForElementAndGetAttribute(
-            TITLE,
-            "text",
-            "Cannot find the title of the article");
+  public String getArticleTitleNoWait() {
+    WebElement title_element = waitForTitleElement();
+    if (Platform.getInstance().isAndroid()) {
+      return title_element.getAttribute("text");
+    } else if (Platform.getInstance().isIOS()) {
+      return title_element.getAttribute("name");
+    } else {
+      return title_element.getText();
+    }
   }
 
   public void swipeToFooter() {

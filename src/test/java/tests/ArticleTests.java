@@ -33,6 +33,8 @@ public class ArticleTests extends CoreTestCase {
   }
 
   @Test
+  @DisplayName("Compare article title with expected v.2")
+  @Description("We search an article about Java and compare title not waiting title to appear")
   public void testAssertArticleTitleWithNoWait() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
