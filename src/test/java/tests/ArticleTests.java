@@ -1,6 +1,9 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
+import org.junit.Assert;
 import org.junit.Test;
 import ui.ArticlePageObject;
 import ui.SearchPageObject;
@@ -10,6 +13,8 @@ import ui.factories.SearchPageObjectFactory;
 public class ArticleTests extends CoreTestCase {
 
   @Test
+  @DisplayName("Compare article title with expected one")
+  @Description("We search an article about Java and compare title")
   public void testCompareArticleTitle() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -21,7 +26,7 @@ public class ArticleTests extends CoreTestCase {
     ArticlePageObject.waitForTitleElement();
     String article_title = ArticlePageObject.getArticleTitle();
 
-    assertEquals(
+    Assert.assertEquals(
             "Unexpected title",
             "Java (programming language)",
             article_title);
@@ -40,6 +45,8 @@ public class ArticleTests extends CoreTestCase {
   }
 
   @Test
+  @DisplayName("Swipe article to the footer")
+  @Description("We open an article and swipe it to the footer")
   public void testSwipeArticle() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
