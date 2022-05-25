@@ -1,7 +1,8 @@
 package lib;
 
 import io.appium.java_client.AppiumDriver;
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.WelcomePageObject;
@@ -9,13 +10,12 @@ import ui.WelcomePageObject;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class CoreTestCase extends TestCase {
+public class CoreTestCase {
 
   protected RemoteWebDriver driver;
 
-  @Override
-  protected void setUp() throws Exception {
-    super.setUp();
+  @Before
+  public void setUp() throws Exception {
     driver = Platform.getInstance().getDriver();
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     this.rotateScreenPortrait();
@@ -23,10 +23,9 @@ public class CoreTestCase extends TestCase {
     this.openWikiWebPageForMobileWeb();
   }
 
-  @Override
-  protected void tearDown() throws Exception {
+  @After
+  public void tearDown() {
     driver.quit();
-    super.tearDown();
   }
 
   protected void rotateScreenPortrait() {
