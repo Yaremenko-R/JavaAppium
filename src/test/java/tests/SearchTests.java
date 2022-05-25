@@ -1,6 +1,7 @@
 package tests;
 
 import lib.CoreTestCase;
+import org.junit.Assert;
 import org.junit.Test;
 import ui.SearchPageObject;
 import ui.factories.SearchPageObjectFactory;
@@ -41,7 +42,7 @@ public class SearchTests extends CoreTestCase {
     SearchPageObject.typeSearchLine("Java");
     int amount_of_search_results = SearchPageObject.getAmountOfFoundArticles();
 
-    assertTrue(
+    Assert.assertTrue(
             "We found too few results",
             amount_of_search_results > 1
     );
@@ -49,7 +50,7 @@ public class SearchTests extends CoreTestCase {
     SearchPageObject.clickCancelSearch();
     int amount_of_search_results_after_canceling_search = SearchPageObject.getAmountOfFoundArticles();
 
-    assertEquals("Search result is still present on a page", 0, amount_of_search_results_after_canceling_search);
+    Assert.assertEquals("Search result is still present on a page", 0, amount_of_search_results_after_canceling_search);
   }
 
   @Test
@@ -61,7 +62,7 @@ public class SearchTests extends CoreTestCase {
     SearchPageObject.waitForElementByTitleAndDescription("ava (programming language)", "bject-oriented programming language");
     int amount_of_search_results = SearchPageObject.getAmountOfFoundArticles();
 
-    assertTrue(
+    Assert.assertTrue(
             "We found too few results",
             amount_of_search_results >= 3
     );
@@ -85,7 +86,7 @@ public class SearchTests extends CoreTestCase {
     SearchPageObject.typeSearchLine(search_line);
     int amount_of_search_results = SearchPageObject.getAmountOfFoundArticles();
 
-    assertTrue(
+    Assert.assertTrue(
             "We found too few results",
             amount_of_search_results > 0
     );

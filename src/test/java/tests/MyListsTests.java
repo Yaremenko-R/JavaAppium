@@ -2,6 +2,7 @@ package tests;
 
 import lib.CoreTestCase;
 import lib.Platform;
+import org.junit.Assert;
 import org.junit.Test;
 import ui.*;
 import ui.factories.ArticlePageObjectFactory;
@@ -41,7 +42,7 @@ public class MyListsTests extends CoreTestCase {
       NavigationUI.switchToMobileView();
 
       ArticlePageObject.waitForTitleElement();
-      assertEquals("We are not on the same page after login", article_title, ArticlePageObject.getArticleTitle());
+      Assert.assertEquals("We are not on the same page after login", article_title, ArticlePageObject.getArticleTitle());
       ArticlePageObject.addArticleToMySaved();
     }
 
@@ -86,7 +87,7 @@ public class MyListsTests extends CoreTestCase {
       NavigationUI.switchToMobileView();
 
       ArticlePageObject.waitForTitleElement();
-      assertEquals("We are not on the same page after login", article_title1, ArticlePageObject.getArticleTitle());
+      Assert.assertEquals("We are not on the same page after login", article_title1, ArticlePageObject.getArticleTitle());
       ArticlePageObject.addArticleToMySaved();
     }
 
@@ -121,7 +122,7 @@ public class MyListsTests extends CoreTestCase {
     SearchPageObject.clickByArticleWithSubstring("igh-level programming language");
     String article_title2_after = ArticlePageObject.getArticleTitle();
 
-    assertEquals(
+    Assert.assertEquals(
             "Title of the article in the list '" + name_of_folder + "' is not matching",
             article_title2,
             article_title2_after);
