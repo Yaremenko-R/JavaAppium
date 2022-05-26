@@ -34,7 +34,7 @@ abstract public class SearchPageObject extends MainPageObject {
     this.waitForElementAndClick(SEARCH_INIT_ELEMENT, "Cannot find and click search init element", 15);
   }
 
-  @Step("Typing text into search input")
+  @Step("Typing '{search_line}' into search input")
   public void typeSearchLine(String search_line) {
     this.waitForElementAndSendKeys(SEARCH_INPUT, search_line, "Cannot find and type into search input", 15);
   }
