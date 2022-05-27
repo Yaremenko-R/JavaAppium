@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import org.junit.Assert;
@@ -10,6 +12,7 @@ import ui.factories.MyListsPageObjectFactory;
 import ui.factories.NavigationUIFactory;
 import ui.factories.SearchPageObjectFactory;
 
+@Epic("Tests for testing My lists(reading lists)")
 public class MyListsTests extends CoreTestCase {
   private static final String
           name_of_folder = "Learning programming",
@@ -17,6 +20,11 @@ public class MyListsTests extends CoreTestCase {
           pass = "Adeloida0";
 
   @Test
+  @Features(value = {@Feature(value = "Reading lists")})
+  @DisplayName("Adding first article to reading list")
+  @Description("Adding first article to reading list")
+  @Step("Starting test testSaveFirstArticleToMyList")
+  @Severity(value = SeverityLevel.CRITICAL)
   public void testSaveFirstArticleToMyList() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -60,6 +68,11 @@ public class MyListsTests extends CoreTestCase {
   }
 
   @Test
+  @Features(value = {@Feature(value = "Reading lists")})
+  @DisplayName("Adding two articles to reading list")
+  @Description("Adding two article to reading list, than one of them deleted")
+  @Step("Starting test testSaveTwoArticles")
+  @Severity(value = SeverityLevel.NORMAL)
   public void testSaveTwoArticles() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
