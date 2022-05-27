@@ -1,5 +1,6 @@
 package ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -13,10 +14,12 @@ abstract public class MyListsPageObject extends MainPageObject {
     return ARTICLE_BY_TITLE_TPL.replace("{TITLE}", article_title);
   }
 
+  @Step("Getting remove button by title")
   private static String getRemoveButtonByTitle(String article_title) {
     return REMOVE_FROM_SAVED_BUTTON.replace("{TITLE}", article_title);
   }
 
+  @Step("Getting folder Xpath by name")
   private static String getFolderXpathByName(String name_of_folder) {
     return FOLDER_BY_NAME_TPL.replace("{FOLDER_NAME}", name_of_folder);
   }
@@ -25,6 +28,7 @@ abstract public class MyListsPageObject extends MainPageObject {
     super(driver);
   }
 
+  @Step("Open folder by name")
   public void openFolderByName(String name_of_folder) {
     String folder_name_xpath = getFolderXpathByName(name_of_folder);
     this.waitForElementAndClick(
@@ -33,6 +37,7 @@ abstract public class MyListsPageObject extends MainPageObject {
             15);
   }
 
+  @Step("Remove article from My lists by swiping")
   public void swipeByArticleToDelete(String article_title) {
     this.waitForArticleToAppearByTitle(article_title);
 
@@ -58,6 +63,7 @@ abstract public class MyListsPageObject extends MainPageObject {
     this.waitForArticleToDisappearByTitle(article_title);
   }
 
+  @Step("Waiting article to disappear by title")
   public void waitForArticleToDisappearByTitle(String article_title) {
     if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()) {
       String article_xpath = getFolderXpathByName(article_title);
@@ -70,6 +76,7 @@ abstract public class MyListsPageObject extends MainPageObject {
     }
   }
 
+  @Step("Waiting article to appear by title")
   public void waitForArticleToAppearByTitle(String article_title) {
     if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()) {
       String article_xpath = getFolderXpathByName(article_title);
