@@ -1,13 +1,21 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import ui.SearchPageObject;
 import ui.factories.SearchPageObjectFactory;
 
+@Epic("Tests for search testing")
 public class SearchTests extends CoreTestCase {
   @Test
+  @Features(value = {@Feature(value = "Search")})
+  @DisplayName("Article search testing")
+  @Description("Searching article by keyword")
+  @Step("Starting test testSearch")
+  @Severity(value = SeverityLevel.BLOCKER)
   public void testSearch() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -17,6 +25,11 @@ public class SearchTests extends CoreTestCase {
   }
 
   @Test
+  @Features(value = {@Feature(value = "Search")})
+  @DisplayName("Asserting element text")
+  @Description("Asserting element has expected text")
+  @Step("Starting test testTextCheck")
+  @Severity(value = SeverityLevel.CRITICAL)
   public void testTextCheck() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -25,6 +38,11 @@ public class SearchTests extends CoreTestCase {
   }
 
   @Test
+  @Features(value = {@Feature(value = "Search")})
+  @DisplayName("Testing Cancel search button")
+  @Description("Testing Cancel search button")
+  @Step("Starting test testCancelSearch")
+  @Severity(value = SeverityLevel.CRITICAL)
   public void testCancelSearch() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -35,6 +53,11 @@ public class SearchTests extends CoreTestCase {
   }
 
   @Test
+  @Features(value = {@Feature(value = "Search")})
+  @DisplayName("Testing Cancel search button")
+  @Description("Testing Cancel search button by counting search results")
+  @Step("Starting test testCancelSearch2")
+  @Severity(value = SeverityLevel.CRITICAL)
   public void testCancelSearch2() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -54,6 +77,11 @@ public class SearchTests extends CoreTestCase {
   }
 
   @Test
+  @Features(value = {@Feature(value = "Search")})
+  @DisplayName("Article search testing by title and description")
+  @Description("Searching article by title and description")
+  @Step("Starting test testSearchByTitleAndDesc")
+  @Severity(value = SeverityLevel.NORMAL)
   public void testSearchByTitleAndDesc() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -69,6 +97,11 @@ public class SearchTests extends CoreTestCase {
   }
 
   @Test
+  @Features(value = {@Feature(value = "Search")})
+  @DisplayName("Searching results correctness checking")
+  @Description("Searching results correctness checking")
+  @Step("Starting test testSearchResultsCheck")
+  @Severity(value = SeverityLevel.NORMAL)
   public void testSearchResultsCheck() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
     String search_line = "JAVA";
@@ -78,6 +111,11 @@ public class SearchTests extends CoreTestCase {
   }
 
   @Test
+  @Features(value = {@Feature(value = "Search")})
+  @DisplayName("Checking of not empty search results")
+  @Description("Checking of not empty search results")
+  @Step("Starting test testAmountOfNotEmptySearch")
+  @Severity(value = SeverityLevel.NORMAL)
   public void testAmountOfNotEmptySearch() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -93,6 +131,11 @@ public class SearchTests extends CoreTestCase {
   }
 
   @Test
+  @Features(value = {@Feature(value = "Search")})
+  @DisplayName("Checking of empty search results")
+  @Description("Checking of empty search results")
+  @Step("Starting test testAmountOfNotEmptySearch")
+  @Severity(value = SeverityLevel.NORMAL)
   public void testAmountOfEmptySearch() {
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
