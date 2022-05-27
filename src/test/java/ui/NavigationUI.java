@@ -1,5 +1,6 @@
 package ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -13,6 +14,7 @@ abstract public class NavigationUI extends MainPageObject {
     super(driver);
   }
 
+  @Step("Open navigation menu")
   public void openNavigation() {
     if (Platform.getInstance().isMW()) {
       this.waitForElementAndClick(OPEN_NAVIGATION, "Cannot find menu button", 5);
@@ -21,6 +23,7 @@ abstract public class NavigationUI extends MainPageObject {
     }
   }
 
+  @Step("Open My Lists")
   public void clickMyLists() {
     if (Platform.getInstance().isMW()) {
       this.tryClickElementWithFewAttempts(
@@ -35,6 +38,7 @@ abstract public class NavigationUI extends MainPageObject {
     }
   }
 
+  @Step("Switching to mobile view mode after authorization")
   public void switchToMobileView() {
     if (Platform.getInstance().isMW()) {
       this.waitForElementAndClick(MOBILE_VIEW_LINK, "Cannot find 'Mobile view' link", 5);
